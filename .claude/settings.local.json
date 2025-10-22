@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/omerf/Desktop/new Apps/n8n deneme/**)",
+      "Read(//c/Users/omerf/Desktop/new Apps/youtube-playlist-manager/**)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout 10 bash -c \"while ! curl -s http://localhost:3000 > /dev/null; do sleep 1; done\")",
+      "Bash(npm uninstall:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout 15 bash -c \"while ! curl -s http://localhost:3000 > /dev/null; do sleep 1; done\")",
+      "Bash(taskkill:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(dir)",
+      "Bash(dir:*)",
+      "Read(//c/Users/omerf/Desktop/new Apps/project/src/components/**)",
+      "Read(//c/Users/omerf/Desktop/new Apps/project/src/**)",
+      "Bash(del \"C:\\Users\\omerf\\Desktop\\new Apps\\my-app\\src\\components\\VideoList.js\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
