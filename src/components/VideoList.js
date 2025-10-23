@@ -35,7 +35,8 @@ export default function VideoList({ playlistId, isDark }) {
     setLoadingTranscripts(prev => ({ ...prev, [videoId]: true }));
 
     try {
-      const response = await fetch(`/api/transcripts?videoId=${videoId}`);
+      // Cache busting için timestamp ekle
+      const response = await fetch(`/api/transcripts?videoId=${videoId}&t=${Date.now()}`);
       const data = await response.json();
 
       if (data.error) {
@@ -153,9 +154,22 @@ export default function VideoList({ playlistId, isDark }) {
             {transcripts[videoId] && (
               <div className={`border-t p-4 ${isDark ? 'bg-blue-900/20 border-gray-700' : 'bg-blue-50 border-blue-200'}`}>
                 {transcripts[videoId].error ? (
-                  <p className={`text-sm ${isDark ? 'text-red-400' : 'text-red-600'}`}>
-                    ❌ {transcripts[videoId].error}
-                  </p>
+                  <div className={`p-3 rounded-lg ${isDark ? 'bg-red-900/20 border border-red-800' : 'bg-red-50 border border-red-200'}`}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-red-500">⚠️</span>
+                      <strong className={`text-sm ${isDark ? 'text-red-300' : 'text-red-800'}`}>
+                        Transcript Alınamadı
+                      </strong>
+                    </div>
+                    <p className={`text-sm ${isDark ? 'text-red-400' : 'text-red-600'}`}>
+                      {transcripts[videoId].error}
+                    </p>
+                    {transcripts[videoId].suggestion && (
+                      <p className={`text-xs mt-1 ${isDark ? 'text-red-500' : 'text-red-500'}`}>
+                        💡 {transcripts[videoId].suggestion}
+                      </p>
+                    )}
+                  </div>
                 ) : (
                   <div>
                     <div className="flex justify-between items-center mb-3">
