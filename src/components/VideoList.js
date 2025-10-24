@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Play, Copy, FileText, ExternalLink, Loader2 } from 'lucide-react';
+import Summarizer from './Summarizer';
 
 export default function VideoList({ playlistId, isDark }) {
   const { accessToken } = useAuth();
@@ -197,6 +198,9 @@ export default function VideoList({ playlistId, isDark }) {
                     </div>
                   </div>
                 )}
+                
+                {/* Summarizer bileşeni */}
+                <Summarizer transcript={transcripts[videoId]} isDark={isDark} />
               </div>
             )}
           </div>
